@@ -1,5 +1,6 @@
-let base = document.querySelector('.base');
-createBoard();
+let base2 = document.querySelector('.base2');
+
+createBoard2();
 
 let mouseOn = false;
 let colourValue;
@@ -35,32 +36,22 @@ function main(){
 }
 
 // Create grid for board
-function createBoard(length) {
+function createBoard2(length) {
     if (length == undefined) {
         length = 16;
-    }
-    const boardSize = 500;
-    let squareHeight = boardSize / length;
-    let squareWidth = 1 / length * 100;   
-    const board = document.createElement('div');
-    board.classList.add('board', 'container-fluid');
-    base.appendChild(board);
+    }  
+    const board2 = document.createElement('div');
+    board2.classList = 'board2';
+    board2.style.gridTemplateColumns = `repeat(${length}, 1fr)`;
+    base2.appendChild(board2);
 
-    for (let i = 0; i < length; i++) {
-        const row = document.createElement('div');
-        row.classList.add('row');
-        board.appendChild(row);
-
-        for (let j = 0; j < length; j++) {
-            const square = document.createElement('div');
-            square.classList.add('square', 'grid');
-            square.setAttribute('id', `square${i}-${j}`);
-            square.style.padding = '0px';
-            square.style.height = `${squareHeight}px`;
-            square.style.width = `${squareWidth}%`;
-            square.style.backgroundColor = '#ffffff';
-            row.appendChild(square);
-        }
+    for (let i = 0; i < length * length; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square', 'grid');
+        square.setAttribute('id', `square${i}`);
+        square.style.padding = '0px';
+        square.style.backgroundColor = '#ffffff';
+        board2.appendChild(square);
     }
 }
 
@@ -81,7 +72,6 @@ function startDrawing(e) {
         squareActive.style.backgroundColor = `#${randColour}`;
     }
     else if (source == 'grey') {
-        console.log(squareActive.style.backgroundColor)
         let squareClass = squareActive.getAttribute('class');
         if (squareActive.style.backgroundColor.match(/rgba/)) {
             let opacity = +(squareActive.style.backgroundColor.slice(-4, -1));
@@ -139,9 +129,9 @@ colourButton.oninput = function() {
 
 // Creates board size specified by slider
 function remakeBoard() {
-    const board = document.querySelector('.board');
-    base.removeChild(board);
-    createBoard(slider.value);
+    const board2 = document.querySelector('.board2');
+    base2.removeChild(board2);
+    createBoard2(slider.value);
     let boardSquare = document.querySelectorAll('.square');
     boardSquare.forEach((element) => {
         element.addEventListener('mouseover', startDrawing); 
@@ -166,4 +156,3 @@ function greyScale() {
 function eraser() {
     source = 'white';
 }
-

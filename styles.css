@@ -2,6 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
 
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Noto Sans JP';
     background-color: rgb(48, 51, 54);
@@ -12,31 +20,44 @@ h1 {
     margin-top: 30px;
     color:  red;
     font-size: 50px;
+    text-align: center;
 }
 
 .para {
     color: white;
-    margin-top: 20px;
+    margin-top: 15px;
+    font-size: 17px;
+    text-align: center;
 }
 
-.options {
-    margin-top: 40px;
+.optionsTop {
+    display: flex;
+    margin: 20px 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.optionsTop > button {
+    height: 40px;
+    margin-right: 5px;
+}
+
+.sliderFix {
+    display: flex;
+    flex-direction: column;
 }
  
 .sliderText {
-    position: relative;
-    left: 20px;
-    bottom: 15px;
     color: white;
 }
 
-.board {
-    background-color: white;
-    border-style: solid;
-    border-width: 10px;
-    border-color: red;
+.board2 {
+    display: grid;
     width: 500px;
-    height: 521px;
+    height: 500px;
+    border: 10px solid red;
+    margin: 0 auto;
+    background-color: white;
 }
 
 .grid {
@@ -44,14 +65,52 @@ h1 {
     border-width: thin;
 }
 
-#colorText {
-    position: relative;
-    bottom: 5px;
-    left: 70px;
-    color: white;
+.optionsBottom {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-#ColorInput {
-    position: relative;
-    left: 42px;
+.optionsBottom :is(button, input) {
+    margin-right: 5px;
+}
+
+@media (max-width: 575px) {
+    .board2 {
+        width: 400px;
+        height: 400px;
+    }
+
+    .optionsTop {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 75%;
+        margin: 15px auto;
+    }
+    .optionsTop > button {
+        margin-bottom: 5px;
+        height: auto;
+    }
+
+    .optionsBottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 75%;
+        margin: 20px auto;
+    }
+
+    .optionsBottom :is(button, input) {
+        margin-bottom: 5px;
+    }
+
+    .optionsBottom input {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 450px) {
+    .board2 {
+        width: 280px;
+        height: 280px;
+    }
 }
